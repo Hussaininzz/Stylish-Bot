@@ -5,38 +5,27 @@ from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
 
-@Client.on_message(filters.command('start'))
-async def start(c, m):
-    owner = await c.get_users(int(Config.OWNER_ID))
-    owner_username = owner.username if owner.username else 'zautebot'
 
-    # start text
-    text = f"""Hey! {m.from_user.mention(style='md')},
+@Client.on_message(filters.command("start"))
+async def start_message(bot, message):
+    await message.reply_text(
+         text ="Hey! {m.from_user.mention(style='md')},
 
-** I am Stylish Font Bot ✍️**
+ I am Stylish Font Bot ✍️
 
-`I can help you to get stylish fonts. Just send me some text and see magic.`
+ I can help you to get stylish fonts. Just send me some text and see magic
+More Help Use This Command /Help
 
-** Developer by :** ❤️ ▷ [@ZauteKm](https://t.me/ZauteKm/346)
-"""
+ Powered By : ❤️ ▷ [Movie Hub Bots](https://t.me/Movie_Hub_Bots)  Developer : 💻 ▷ [ZateKm](http://zautekm.blogspot.com)"
+         reply_markup=InlineKeyboardMarkup( [[
+             InlineKeyboardButton("Search Series 🔎", url="https://t.me/Netflix_1_Million_Bot"),
+             InlineKeyboardButton("Movie Bot", url="https://t.me/xxxtentacionlegendbot")
+             ],[
+             InlineKeyboardButton ("📢 Updates 📢", url="https://t.me/movie_hub_bots")
+             ]]
+             )
+         ) 
 
-    # Buttons
-    buttons = [
-        [
-            InlineKeyboardButton('👥 Group', url=f"https://t.me/iZaute/5"),
-            InlineKeyboardButton('Channel 📢', url=f"https://t.me/iZaute/6")
-            ],[
-            InlineKeyboardButton('❤️ Credit', url=f"https://t.me/{owner_username}"),
-            InlineKeyboardButton('Bot Lists 🤖', url=f"https://t.me/iZaute/8"),
-            InlineKeyboardButton('GitHup 🤣', url=f"https://github.com/ZauteKm")
-            ],[
-            InlineKeyboardButton('⚜️ Subscribe Now YouTube ⚜️', url=f"https://youtube.com/c/ZauteKm")
-        ]
-    ]
-    await m.reply_text(
-        text=text,
-        reply_markup=InlineKeyboardMarkup(buttons)
-    )
 
 
 
